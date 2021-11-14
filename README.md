@@ -13,9 +13,9 @@ L'Utilisateur peut soit contrôler ses appareils avec une reconnaissance vocale 
 ## Les devs ~~de génie~~
 
 Tous trois membres de la E3FE 2E
-Jules BENKEMOUN
-Anthony CARDOSO
-Avesta MOLAEI 
+- Jules BENKEMOUN
+- Anthony CARDOSO
+- Avesta MOLAEI 
 
 ## comman sa marches [tuto 100% fonktionel]
 C'est tout bête:
