@@ -22,10 +22,10 @@ C'est tout bête:
 - Télécharger l'archive [rIChard.zip](https://github.com/avmolaei/rIChard/archive/refs/heads/master.zip)
 - L'extraire dans votre répertoire de travail
 - Sous [Android Studio](https://developer.android.com/studio)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ File>Open
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Sélectionnez votre répertoire de travail/rIChard
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Appuyez sur OK
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ~~Attendre 500 ans le build de Gradle~~
+- + File>Open
+- + Sélectionnez votre répertoire de travail/rIChard
+- + Appuyez sur OK
+- + ~~Attendre 500 ans le build de Gradle~~
  - Le projet est opérationel!
  
  ## Documents intéressants:
@@ -37,18 +37,18 @@ C'est tout bête:
 
 Appli développée et compilée sur
 - Thinkpad T430 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ParrotOS (4.11, x86_64)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ DE: MATE 1.24.1
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ CPU: I5 3320M (4) @ 3.300GHz
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ GPU: Intel 3rd Gen Core processor Graphics Controller
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Memory:15688MiB
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Android Studio Arctic Fox | 2020.3.1 Patch 2
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ~~En dark mode parce qu'on est des h4xx0r~~<br/> 
+- + ParrotOS (4.11, x86_64)
+- + DE: MATE 1.24.1
+- + CPU: I5 3320M (4) @ 3.300GHz
+- + GPU: Intel 3rd Gen Core processor Graphics Controller
+- + Memory:15688MiB
+- + Android Studio Arctic Fox | 2020.3.1 Patch 2
+- +  ~~En dark mode parce qu'on est des h4xx0r~~<br/> 
 
 Appli testée sur
 - Xiaomi/Pocophone Poco X3 5G Pro NFC
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Android 11, MIUI 12.5 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Chipset Qualcomm Snapdragon 860 (7nm)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ CPU octa-coeur 2.96GHz Kryo 485 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ GPU Adreno 640
+- + Android 11, MIUI 12.5 
+- + Chipset Qualcomm Snapdragon 860 (7nm)
+- + CPU octa-coeur 2.96GHz Kryo 485 
+- + GPU Adreno 640
 
