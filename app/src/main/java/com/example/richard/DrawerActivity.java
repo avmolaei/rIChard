@@ -28,7 +28,7 @@ public class DrawerActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     public ActivityDrawerBinding binding;
-    public String sttResult = "amogus";
+    public String sttResult = "ඞ sus amogus ඞ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
