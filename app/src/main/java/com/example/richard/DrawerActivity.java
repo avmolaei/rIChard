@@ -26,13 +26,25 @@ import java.util.Locale;
 
 public class DrawerActivity extends AppCompatActivity {
 
+
+    //LISTE DE ATTRIBUTS
     private AppBarConfiguration mAppBarConfiguration;
     public ActivityDrawerBinding binding;
     public String sttResult = "ඞ sus amogus ඞ";
+    private BluetoothThreadApp aBluetoothOp;
+    private Spinner            aSpinner;
+    private Button             aBoutonChambre;
+    private Button             aBoutonSalon;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.aBoutonChambre = this.findViewById(R.id.bouton1);
+        this.aBoutonChambre.setOnClickListener(new ButtonListener("Chambre"));
+        this.aBoutonSalon = this.findViewById(R.id.bouton2);
+        this.aBoutonSalon.setOnClickListener(new ButtonListener("Salon"));
+        this.aSpinner = this.findViewById(R.id.spinner);
 
         binding = ActivityDrawerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -59,6 +71,15 @@ public class DrawerActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_drawer);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+    /** START BLUETOOTH */
+
+        this.startDiscovery();//On appelle la méthode startDiscovery pour établir la liste des appareils
+        BluetoothAdapter vBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if(!vBluetoothAdapter.isEnabled())//Si le bluetooth n’est pas activé, on demande à l’utilisateur de le faire
+        {
+            startActivityForResult(new Intent("android.bluetooth.adapter.action.REQUEST_ENABLE"), 0);
+        }
     }
 
     @Override
@@ -74,6 +95,53 @@ public class DrawerActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    //Methode startDiscovery
+    public void startDiscovery()
+    {
+        this.aSpinner.setEnabled(true);//On active ou réactive le spinner
+        BluetoothDevice[] vBluetoothDevices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray(new BluetoothDevice[0]);//On créé une liste des appareils
+        String[] vDevicesNames = new String[vBluetoothDevices.length+1];//On crée la liste mais que de leurs noms (qu'on affichera)
+        vDevicesNames[0] = "No device connected";//Le premier élément signifie qu’il n’y a pas d’appareil
+        for(int i=0; i<vBluetoothDevices.length; i++)//Pour chaque élément
+        {
+            vDevicesNames[i+1] = vBluetoothDevices[i].getName();//On ajoute son nom à la liste
+        }
+        ArrayAdapter vArrayAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, vDevicesNames);
+        vArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//On choisitt l’affichage de la liste du spinner
+        this.aSpinner.setAdapter(vArrayAdapter);
+        this.aSpinner.setOnItemSelectedListener(this);
+    }
+
+    //Méthode à decortiquer
+    public void onItemSelected(final AdapterView<?> pAdapterView, final View pView, final int pInt, final long pLong)
+    {
+        if(pInt == 0)//On verifie si c'est le premier élément du spinner qui est sélectionné (donc déconnecté)
+        {
+            if(this.aBluetoothOp != null)
+            {
+                this.aBluetoothOp.interrupt();//On interrompt le thread donc on va sortir de la boucle de la classe BluetoothThreadApp
+            }
+        }
+        else
+        {
+            this.findViewById(R.id.spinner).setEnabled(false);//On désactive le bouton car on a deja choisit un appareil
+            BluetoothAdapter.getDefaultAdapter().cancelDiscovery();//On arrête donc la recherche de BluetoothDevice
+            BluetoothDevice vBluetoothDevice = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray(new BluetoothDevice[0])[pInt-1];//On crée un BluetoothDevice en fonction de ce qu'on a sélectionné
+            this.aBluetoothOp = new BluetoothThreadApp(this, vBluetoothDevice);//On crée un nouvel objet de type BluetoothThreadApp
+            this.aBluetoothOp.start();//On appelle la méthode start pour démarrer le thread
+            this.aBluetoothOp.run();//On appelle la méthode run de la classe BluetoothThreadApp
+
+        }
+    }
+
+    //Méthode onNothingSelected
+    public  void onNothingSelected(final AdapterView<?> pAdapterView)
+    {
+        //Même si inutilisée, on déclare la méthode onNothingSelected car on a implémenté OnItemSelectedListener
+    }
+
+
 
 
     private void startSpeechToText() {
@@ -108,8 +176,12 @@ public class DrawerActivity extends AppCompatActivity {
             }
         }
 
-        Toast.makeText(getApplicationContext(),
-                sttResult,
-                Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), sttResult, Toast.LENGTH_SHORT).show();
+        //sttParse = sttresult + ?
+        //INSERT PARSE FUNCTION
+        DrawerActivity.this.aBluetoothOp.setDirection(sttResult); //replace with sttParse
+        DrawerActivity.this.aBluetoothOp.manageConnectedSocket();
+
+
     }
 }
