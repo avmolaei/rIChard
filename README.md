@@ -19,6 +19,7 @@ Tous trois membres de la E3FE 2E
 
 ## comman sa marches [tuto 100% fonktionel]
 C'est tout bête:
+- `git clone https://github.com/avmolaei/rIChard.git` pour les intimes
 - Télécharger l'archive [rIChard.zip](https://github.com/avmolaei/rIChard/archive/refs/heads/master.zip)
 - L'extraire dans votre répertoire de travail
 - Sous [Android Studio](https://developer.android.com/studio)
