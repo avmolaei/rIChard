@@ -158,8 +158,57 @@ public class DrawerActivity extends AppCompatActivity {
                     "Désolé, la reconnaissance vocale Google n'est pas disponible sur cet appareil : ( uWu (cheh en vrai).",
                     Toast.LENGTH_SHORT).show();
         }
+        parseCommand(sttResult);
 
     }
+    
+    
+    
+    protected void parseCommand(String sstResult){
+            String commandWord = "";
+            String room = "";
+            String device = "";
+
+
+            if (sttResult.contains("éteindre") || sttResult.contains("éteins")) {
+                commandWord += "off";
+                commandWord += ";";
+            }
+            else if (sttResult.contains("allumer") || sttResult.contains("allume")||sttResult.contains("allumes")||sttResult.contains("allumé")){
+                commandWord += "on";
+                commandWord += ";";
+            }
+
+            if (sttResult.contains("salon")) {
+                room += "salon";
+                room += ";";
+            }
+            else if (sttResult.contains("chambre")) {
+                room += "chambre";
+                room += ";";
+            }
+
+            if (sttResult.contains("lampe") || sttResult.contains("lumière")) {
+                device += "1";
+                device += ";";
+            }
+            else if (sttResult.contains("télé") || sttResult.contains("TV")||sttResult.contains("télévision")){
+                device += "2";
+                device += ";";
+            }
+            else if (sttResult.contains("ordinateur") || sttResult.contains("PC") || sttResult.contains("ordi")) {
+                device += "3";
+                device += ";";
+            }
+
+            //formattage de sortie: commmande;piece;numéro;
+            output=commandWord+room+device;
+
+            Toast.makeText(getApplicationContext(),
+                output,
+                Toast.LENGTH_SHORT).show();
+        }
+    
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
