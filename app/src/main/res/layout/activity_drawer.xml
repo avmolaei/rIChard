@@ -28,6 +28,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Appareil : "
-        <!-- android:layout_below="@id/bouton1" -->
         />
 </androidx.drawerlayout.widget.DrawerLayout>

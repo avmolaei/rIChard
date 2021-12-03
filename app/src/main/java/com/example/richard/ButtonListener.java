@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
         private String aDirection;
 
         //Constructeur naturel de la classe ButtonListener
-        private ButtonListener(final String pString)
+        ButtonListener(final String pString)
         {
             this.aDirection = pString;
         }
