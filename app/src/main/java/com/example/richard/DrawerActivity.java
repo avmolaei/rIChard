@@ -158,13 +158,11 @@ public class DrawerActivity extends AppCompatActivity {
                     "Désolé, la reconnaissance vocale Google n'est pas disponible sur cet appareil : ( uWu (cheh en vrai).",
                     Toast.LENGTH_SHORT).show();
         }
-        parseCommand(sttResult);
-
     }
     
     
     
-    protected void parseCommand(String sstResult){
+    protected String parseCommand(String sstResult){
             String commandWord = "";
             String room = "";
             String device = "";
@@ -202,11 +200,12 @@ public class DrawerActivity extends AppCompatActivity {
             }
 
             //formattage de sortie: commmande;piece;numéro;
-            output=commandWord+room+device;
+            String output = commandWord+room+device;
 
             Toast.makeText(getApplicationContext(),
                 output,
-                Toast.LENGTH_SHORT).show();
+                           Toast.LENGTH_SHORT).show();
+            return output;
         }
     
 
@@ -226,8 +225,8 @@ public class DrawerActivity extends AppCompatActivity {
         }
 
         Toast.makeText(getApplicationContext(), sttResult, Toast.LENGTH_SHORT).show();
-        //sttParse = sttresult + ?
         //INSERT PARSE FUNCTION
+        String sttParse = parseCommand(sttResult);
         DrawerActivity.this.aBluetoothOp.setDirection(sttResult); //replace with sttParse
         DrawerActivity.this.aBluetoothOp.manageConnectedSocket();
 
