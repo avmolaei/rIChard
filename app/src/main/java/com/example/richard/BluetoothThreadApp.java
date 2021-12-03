@@ -1,4 +1,4 @@
-package com.example.applicationanthonyavesta;
+package com.example.richard;
 
 //Imports nécessaires à la classe BluetoothThreadApp
 import android.bluetooth.BluetoothAdapter;
@@ -15,7 +15,7 @@ import java.util.UUID;
 public class BluetoothThreadApp extends Thread
 {
     //Attributs de la classe BluetoothThreadApp
-    private MainActivity    aMainActivity;
+    private DrawerActivity    aMainActivity;
     private BluetoothDevice aBluetoothDevice;
     private BluetoothSocket aBluetoothSocket;
     private InputStream     aInputStream;
@@ -23,7 +23,7 @@ public class BluetoothThreadApp extends Thread
     private String          aDirection;
 
     //Constructeur naturel de la classe BluetoothThreadApp
-    public BluetoothThreadApp(final MainActivity pMainActivity, final BluetoothDevice pBluetoothDevice)
+    public BluetoothThreadApp(final DrawerActivity pMainActivity, final BluetoothDevice pBluetoothDevice)
     {
         this.aBluetoothDevice = pBluetoothDevice;
         this.aMainActivity = pMainActivity;
@@ -70,7 +70,7 @@ public class BluetoothThreadApp extends Thread
     }
 
     //Méthode manageConnectedSocket
-    private void manageConnectedSocket()
+    public void manageConnectedSocket()
     {
         while(!Thread.currentThread().isInterrupted())//Tant que le thread n’est pas interrompu, on reste dans la boucle
         {

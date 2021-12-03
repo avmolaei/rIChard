@@ -1,11 +1,17 @@
 package com.example.richard;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.view.Menu;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,19 +36,18 @@ public class DrawerActivity extends AppCompatActivity {
     //LISTE DE ATTRIBUTS
     private AppBarConfiguration mAppBarConfiguration;
     public ActivityDrawerBinding binding;
-    public String sttResult = "ඞ sus amogus ඞ";
-    private BluetoothThreadApp aBluetoothOp;
-    private Spinner            aSpinner;
-    private Button             aBoutonChambre;
-    private Button             aBoutonSalon;
-    
+    public String sttResult = "null";
+    public com.example.richard.BluetoothThreadApp aBluetoothOp;
+    private Spinner aSpinner;
+    private Button aBoutonChambre;
+    private Button aBoutonSalon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.aBoutonChambre = this.findViewById(R.id.bouton1);
+        this.aBoutonChambre = this.findViewById(R.id.boutonChambre);
         this.aBoutonChambre.setOnClickListener(new ButtonListener("Chambre"));
-        this.aBoutonSalon = this.findViewById(R.id.bouton2);
+        this.aBoutonSalon = this.findViewById(R.id.boutonSAlon);
         this.aBoutonSalon.setOnClickListener(new ButtonListener("Salon"));
         this.aSpinner = this.findViewById(R.id.spinner);
 
