@@ -37,12 +37,12 @@ C'est tout bête:
 ## Les trucs techniques pour les nerds
 
 Appli développée et compilée sur
-- Thinkpad T430 
+- Thinkpad P50
 - + ParrotOS (4.11, x86_64)
 - + DE: MATE 1.24.1
-- + CPU: I5 3320M (4) @ 3.300GHz
-- + GPU: Intel 3rd Gen Core processor Graphics Controller
-- + Memory:15688MiB
+- + CPU: I7 6820HQ (8) @ 3.600GHz
+- + GPU: NVIDIA Quadro M1000M
+- + Memory:23423MiB
 - + Android Studio Arctic Fox | 2020.3.1 Patch 2
 - +  ~~En dark mode parce qu'on est des h4xx0r~~<br/> 
 
