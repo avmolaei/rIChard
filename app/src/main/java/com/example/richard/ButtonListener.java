@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 //On créer la classe ButtonListener mais toujours dans ce fichier
     public class ButtonListener extends DrawerActivity implements View.OnClickListener
     {
-        private String aDirection;
+        private final String aDirection;
 
         //Constructeur naturel de la classe ButtonListener
         ButtonListener(final String pString)
@@ -24,14 +22,14 @@ import androidx.appcompat.app.AppCompatActivity;
             {
                 //MainActivity.this.aBluetoothOp.setDirection("" + this.aDirection);//On change la commande à transmettre en récupérant celle associée au bouton sur lequel on vient de cliquer
                 Toast.makeText(getApplicationContext(), "" + this.aDirection, Toast.LENGTH_SHORT).show();//On affiche la commande sélectionnée à l’aide d’un toast
-                if(this.aDirection == "Chambre") //S'il s’agit du bouton de la chambre
+                if(this.aDirection.equals("Chambre")) //S'il s’agit du bouton de la chambre
                 {
-                    Intent intentChambre = new Intent(this, com.example.richard.ChambreActivity.class); //le .class est à créér/compiler
+                    new Intent(this, ChambreActivity.class);
                     // MainActivity.this.aBluetoothOp.deconnect();//On se déconnecte
                     // MainActivity.this.startDiscovery();//On rappelle startDiscovery pour l’avoir de nouveau
                 }
-                else if(this.aDirection == "Salon") {
-                    Intent intentChambre = new Intent(this, com.example.richard.SalonActivity.class);
+                else if(this.aDirection.equals("Salon")) {
+                    new Intent(this, SalonActivity.class);
                 }//le .class est à créér/compiler
 
             }
