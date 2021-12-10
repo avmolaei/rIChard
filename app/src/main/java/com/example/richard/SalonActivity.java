@@ -14,7 +14,7 @@ public class SalonActivity extends DrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chambre);
+        setContentView(R.layout.activity_salon);
 
         addListenerOnButtonClick();
     }
