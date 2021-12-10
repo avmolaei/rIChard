@@ -47,7 +47,7 @@ public class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.aBoutonChambre = this.findViewById(R.id.boutonChambre);
         this.aBoutonChambre.setOnClickListener(new ButtonListener("Chambre"));
-        this.aBoutonSalon = this.findViewById(R.id.boutonSAlon);
+        this.aBoutonSalon = this.findViewById(R.id.boutonSalon);
         this.aBoutonSalon.setOnClickListener(new ButtonListener("Salon"));
         this.aSpinner = this.findViewById(R.id.spinner);
 

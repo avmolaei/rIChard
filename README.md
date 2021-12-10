@@ -12,7 +12,7 @@ L'Utilisateur peut soit contrôler ses appareils avec une reconnaissance vocale 
 
 ## Les devs ~~de génie~~
 
-Tous trois membres de la E3FE 2E
+Tous trois membres de la E4FE 2E
 - Jules BENKEMOUN
 - Anthony CARDOSO
 - Avesta MOLAEI 
