@@ -43,10 +43,10 @@ public class SalonActivity extends DrawerActivity {
             SalonActivity.super.aBluetoothOp.manageConnectedSocket(); // commande d'envoi
             if(switch2.getText().equals("ON")){
                 //On allume le PC
-                SalonActivity.super.aBluetoothOp.setDirection("on;chambre;3;");
+                SalonActivity.super.aBluetoothOp.setDirection("on;chambre;2;");
             }
             else { //on éteint PC
-                SalonActivity.super.aBluetoothOp.setDirection("off;chambre;3;");
+                SalonActivity.super.aBluetoothOp.setDirection("off;chambre;2;");
             }
             SalonActivity.super.aBluetoothOp.manageConnectedSocket(); //commande d'envoi
         });
