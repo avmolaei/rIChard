@@ -232,8 +232,13 @@ public class DrawerActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), sttResult, Toast.LENGTH_SHORT).show();
         //INSERT PARSE FUNCTION
         String sttParse = parseCommand(sttResult);
-        DrawerActivity.this.aBluetoothOp.setDirection(sttResult); //replace with sttParse
-        DrawerActivity.this.aBluetoothOp.manageConnectedSocket();
+        try{
+            DrawerActivity.this.aBluetoothOp.setDirection(sttParse); //replace with sttParse
+            DrawerActivity.this.aBluetoothOp.manageConnectedSocket();
+        }
+        catch (Exception e){
+            Toast.makeText("No Device connected!");
+        }
 
 
     }
