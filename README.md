@@ -44,7 +44,16 @@ Appli développée et compilée sur
 - + GPU: NVIDIA Quadro M1000M
 - + Memory:23423MiB
 - + Android Studio Arctic Fox | 2020.3.1 Patch 2
-- +  ~~En dark mode parce qu'on est des h4xx0r~~<br/> 
+- +  ~~En dark mode parce qu'on est des h4xx0r~~<br/>
+
+- Acer 5750g
+- + OS: Arch (btw)
+- + WM: Sway
+- + CPU: I3 2350M @2300Mhz
+- + GPU: NVIDIA GT610M
+- + Memory: 8GiB
+- + Editor: DOOM EMACS
+- + ~~jules stop faire le ricer avec ta machine hasbeen~~
 
 Appli testée sur
 - Xiaomi/Pocophone Poco X3 5G Pro NFC
