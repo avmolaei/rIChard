@@ -99,10 +99,6 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    public BluetoothThreadApp getBluetoothOp() {
-        return aBluetoothOp;
-    }
-
     //Methode startDiscovery
     public void startDiscovery()
     {
