@@ -19,6 +19,7 @@
         android:layout_width="250dp"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/sett" />
+        app:srcCompat="@drawable/sett"
+        android:contentDescription="settings logo" />
 
 </RelativeLayout>
