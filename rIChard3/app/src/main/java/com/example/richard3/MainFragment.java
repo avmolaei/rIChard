@@ -1,5 +1,6 @@
 package com.example.richard3;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -15,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -59,37 +61,46 @@ public class MainFragment extends Fragment {
         this.aLampeChambre.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    aBluetoothOp.writeMessage("Allume Lampe Chambre");
+                    aBluetoothOp.writeMessage("on;chamb;1;");
                 }
             }
         });
         this.aPC.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    aBluetoothOp.writeMessage("Allume Lampe Chambre");
+                    aBluetoothOp.writeMessage("on;chamb;3;");
                 }
             }
         });
         this.aLampeSalon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    aBluetoothOp.writeMessage("Allume Lampe Chambre");
+                    aBluetoothOp.writeMessage("on;salon;1;");
                 }
             }
         });
         this.aTV.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    aBluetoothOp.writeMessage("Allume Lampe Chambre");
+                    aBluetoothOp.writeMessage("on;chamb;2;");
                 }
             }
         });
+        //yet another button listener
+
+//        try{
+//            aBluetoothOp.writeMessage(aMainActivity.getSttResult());
+//        }
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.Appareils, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.aSpinner.setAdapter(adapter);
 
         return view;
+    }
+
+    public BluetoothThreadApp getBluetoothOp() {
+        return aBluetoothOp;
     }
 
     //Methode startDiscovery

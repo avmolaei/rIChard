@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout aDrawerLayout;
     private String sttResult = "null";
-    public com.example.richard3.BluetoothThreadApp aBluetoothOp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,13 +155,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toast.makeText(getApplicationContext(), sttResult, Toast.LENGTH_SHORT).show();
         //INSERT PARSE FUNCTION
         String sttParse = parseCommand(sttResult);
-        try{
-            MainActivity.this.aBluetoothOp.setDirection(sttParse);
-            MainActivity.this.aBluetoothOp.manageConnectedSocket();
-            Toast.makeText(getApplicationContext(), sttParse, Toast.LENGTH_SHORT).show();
-        }
-        catch(Exception e){
-            Toast.makeText(getApplicationContext(), "Appareil non connecté!", Toast.LENGTH_SHORT).show();
-        }
+        sttResult = sttParse;
+        //le reste se passe dans le main fragment
+
     }
 }
