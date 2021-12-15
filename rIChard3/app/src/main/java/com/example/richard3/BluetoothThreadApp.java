@@ -60,7 +60,7 @@ public class BluetoothThreadApp extends Thread
     }
 
     //Méthode manageConnectedSocket
-    private void manageConnectedSocket()
+    public void manageConnectedSocket()
     {
         while(!Thread.currentThread().isInterrupted())//Tant que le thread n’est pas interrompu, on reste dans la boucle
         {

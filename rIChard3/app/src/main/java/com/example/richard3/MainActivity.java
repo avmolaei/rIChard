@@ -1,20 +1,18 @@
 package com.example.richard3;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.view.Gravity;
-import android.view.MenuItem;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -25,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout aDrawerLayout;
     private String sttResult = "null";
+    public com.example.richard3.BluetoothThreadApp aBluetoothOp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +156,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toast.makeText(getApplicationContext(), sttResult, Toast.LENGTH_SHORT).show();
         //INSERT PARSE FUNCTION
         String sttParse = parseCommand(sttResult);
-        Toast.makeText(getApplicationContext(), sttParse, Toast.LENGTH_SHORT).show();
+        try{
+            MainActivity.this.aBluetoothOp.setDirection(sttParse);
+            MainActivity.this.aBluetoothOp.manageConnectedSocket();
+            Toast.makeText(getApplicationContext(), sttParse, Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Appareil non connecté!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
