@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    public String getSttResult() {
+        return sttResult;
+    }
+
     private void startSpeechToText() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());

@@ -87,10 +87,8 @@ public class MainFragment extends Fragment {
             }
         });
         //yet another button listener
-
-//        try{
-//            aBluetoothOp.writeMessage(aMainActivity.getSttResult());
-//        }
+        //if(someButtonPressed) aMainActivity.startSpeechToText();
+        //aBluetoothOp.writeMessage(aMainActivity.getSttResult());
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.Appareils, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
