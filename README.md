@@ -17,7 +17,7 @@ Tous trois membres de la E4FE 2E
 - Anthony CARDOSO
 - Avesta MOLAEI 
 
-## comman sa marches [tuto 100% fonktionel]
+## command sa marches [tuto 100% fonktionel]
 C'est tout bête:
 - `git clone https://github.com/avmolaei/rIChard.git` pour les intimes
 - Télécharger l'archive [rIChard.zip](https://github.com/avmolaei/rIChard/archive/refs/heads/master.zip)
