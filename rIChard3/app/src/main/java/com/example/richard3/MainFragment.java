@@ -17,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -57,7 +58,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         this.aView = inflater.inflate(R.layout.fragment_main, container, false);
-
+        Toast.makeText(getContext(), "test", Toast.LENGTH_SHORT).show();
         this.aLampeChambre = aView.findViewById(R.id.toggleButton);
         this.aPC = aView.findViewById(R.id.toggleButton2);
         this.aLampeSalon = aView.findViewById(R.id.toggleButton3);
