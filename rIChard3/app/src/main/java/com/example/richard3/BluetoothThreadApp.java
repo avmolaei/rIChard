@@ -56,13 +56,8 @@ public class BluetoothThreadApp extends Thread
         catch(IOException pIOException)
         {
             pIOException.printStackTrace();//On affiche l’exception
-            this.aMainActivity.getView().findViewById(R.id.spinner).post(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    Toast.makeText(BluetoothThreadApp.this.aMainActivity.getContext(), "Connection failed !", Toast.LENGTH_SHORT).show();//On affiche un Toast pour prévenir l’utilisateur que la connection n’a pas pu se faire
-                }
+            this.aMainActivity.getView().findViewById(R.id.spinner).post(() -> {
+                Toast.makeText(BluetoothThreadApp.this.aMainActivity.getContext(), "Connection failed !", Toast.LENGTH_SHORT).show();//On affiche un Toast pour prévenir l’utilisateur que la connection n’a pas pu se faire
             });
         }
     }
