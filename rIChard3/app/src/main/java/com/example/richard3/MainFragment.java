@@ -1,9 +1,9 @@
 package com.example.richard3;
 
-import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,11 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -36,21 +36,34 @@ public class MainFragment extends Fragment {
     private Switch              aPC;
     private Switch              aLampeSalon;
     private Switch              aTV;
+    private Button              aApply;
+    private Boolean             aSwitch1State;
+    private Boolean             aSwitch2State;
+    private Boolean             aSwitch3State;
+    private Boolean             aSwitch4State;
     private Spinner             aSpinner;
+    private View                aView;
     private MainActivity        aMainActivity;
     private BluetoothThreadApp  aBluetoothOp;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String SWITCH1 = "switch1";
+    public static final String SWITCH2 = "switch2";
+    public static final String SWITCH3 = "switch3";
+    public static final String SWITCH4 = "switch4";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        this.aView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        this.aLampeChambre = view.findViewById(R.id.toggleButton);
-        this.aPC = view.findViewById(R.id.toggleButton2);
-        this.aLampeSalon = view.findViewById(R.id.toggleButton3);
-        this.aTV = view.findViewById(R.id.toggleButton4);
-        this.aSpinner = view.findViewById(R.id.spinner);
+        this.aLampeChambre = aView.findViewById(R.id.toggleButton);
+        this.aPC = aView.findViewById(R.id.toggleButton2);
+        this.aLampeSalon = aView.findViewById(R.id.toggleButton3);
+        this.aTV = aView.findViewById(R.id.toggleButton4);
+        this.aApply = aView.findViewById(R.id.button);
+        this.aSpinner = aView.findViewById(R.id.spinner);
         this.startDiscovery();//On appelle la méthode startDiscovery pour établir la liste des appareils
         BluetoothAdapter vBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if(!vBluetoothAdapter.isEnabled())//Si le bluetooth n’est pas activé, on demande à l’utilisateur de le faire
@@ -60,41 +73,65 @@ public class MainFragment extends Fragment {
 
         this.aLampeChambre.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    aBluetoothOp.writeMessage("on;chamb;1;");
+                if(isChecked)
+                {
+                    if(aBluetoothOp != null)
+                        aBluetoothOp.writeMessage("test");
+                }
+                else
+                {
+
                 }
             }
         });
         this.aPC.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    aBluetoothOp.writeMessage("on;chamb;3;");
+                if(isChecked)
+                {
+
+                }
+                else
+                {
+
                 }
             }
         });
         this.aLampeSalon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    aBluetoothOp.writeMessage("on;salon;1;");
+                if(isChecked)
+                {
+
+                }
+                else
+                {
+
                 }
             }
         });
         this.aTV.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    aBluetoothOp.writeMessage("on;chamb;2;");
+                if(isChecked)
+                {
+
+                }
+                else
+                {
+
                 }
             }
         });
-        //yet another button listener
-        //if(someButtonPressed) aMainActivity.startSpeechToText();
-        //aBluetoothOp.writeMessage(aMainActivity.getSttResult());
+        this.aApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData();
+            }
+        });
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.Appareils, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.aSpinner.setAdapter(adapter);
 
-        return view;
+        loadData();
+        updateViews();
+
+        return aView;
     }
 
     //Methode startDiscovery
@@ -111,64 +148,61 @@ public class MainFragment extends Fragment {
         ArrayAdapter vArrayAdapter = new ArrayAdapter(this.getContext(), R.layout.support_simple_spinner_dropdown_item, vDevicesNames);
         vArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//On choisitt l’affichage de la liste du spinner
         this.aSpinner.setAdapter(vArrayAdapter);
-        //this.aSpinner.setOnItemSelectedListener();
-    }
-
-    //Méthode onItemSelected
-    public void onItemSelected(final AdapterView<?> pAdapterView, final View pView, final int pInt, final long pLong)
-    {
-        if(pInt == 0)//On verifie si c'est le premier élément du spinner qui est sélectionné (donc déconnecté)
-        {
-            if(this.aBluetoothOp != null)
-            {
-                this.aBluetoothOp.interrupt();//On interrompt le thread donc on va sortir de la boucle de la classe BluetoothThreadApp
-            }
-        }
-        else
-        {
-            this.aSpinner.setEnabled(false);//On désactive le bouton car on a deja choisit un appareil
-            BluetoothAdapter.getDefaultAdapter().cancelDiscovery();//On arrête donc la recherche de BluetoothDevice
-            BluetoothDevice vBluetoothDevice = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray(new BluetoothDevice[0])[pInt-1];//On crée un BluetoothDevice en fonction de ce qu'on a sélectionné
-            this.aBluetoothOp = new BluetoothThreadApp(this, vBluetoothDevice);//On crée un nouvel objet de type BluetoothThreadApp
-            this.aBluetoothOp.start();//On appelle la méthode start pour démarrer le thread
-            this.aBluetoothOp.run();//On appelle la méthode run de la classe BluetoothThreadApp
-
-        }
-    }
-
-    //Méthode onNothingSelected
-    public  void onNothingSelected(final AdapterView<?> pAdapterView)
-    {
-        //Même si inutilisée, on déclare la méthode onNothingSelected car on a implémenté OnItemSelectedListener
-    }
-
-    //On créer la classe ButtonListener mais toujours dans ce fichier
-    public class ButtonListener implements View.OnClickListener
-    {
-        private char aDirection;
-
-        //Constructeur naturel de la classe ButtonListener
-        private ButtonListener(final char pChar)
-        {
-            this.aDirection = pChar;
-        }
-
-        //Méthode onClick qui détecte un clic et agit en conséquence
-        public void onClick(final View pView)
-        {
-            if(MainFragment.this.aBluetoothOp != null)
-            {
-                MainFragment.this.aBluetoothOp.setDirection("" + this.aDirection);//On change la direction à transmettre en récupérant celle associée au bouton sur lequel on vient de cliquer
-                if(this.aDirection == 'p')//Si il s’agit du bouton de déconnexion
+        this.aSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i == 0)//On verifie si c'est le premier élément du spinner qui est sélectionné (donc déconnecté)
                 {
-                    MainFragment.this.aBluetoothOp.deconnect();//On se déconnecte
-                    MainFragment.this.startDiscovery();//On rappelle startDiscovery pour l’avoir de nouveau
+                    if(aBluetoothOp != null)
+                    {
+                        aBluetoothOp.interrupt();//On interrompt le thread donc on va sortir de la boucle de la classe BluetoothThreadApp
+                    }
+                }
+                else
+                {
+                    aSpinner.setEnabled(false);//On désactive le bouton car on a deja choisit un appareil
+                    BluetoothAdapter.getDefaultAdapter().cancelDiscovery();//On arrête donc la recherche de BluetoothDevice
+                    BluetoothDevice vBluetoothDevice = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray(new BluetoothDevice[0])[i-1];//On crée un BluetoothDevice en fonction de ce qu'on a sélectionné
+                    aBluetoothOp = new BluetoothThreadApp(aMainActivity, vBluetoothDevice);//On crée un nouvel objet de type BluetoothThreadApp
+                    aBluetoothOp.start();//On appelle la méthode start pour démarrer le thread
+                    aBluetoothOp.run();//On appelle la méthode run de la classe BluetoothThreadApp
                 }
             }
-            else
-            {
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        }
+        });
+    }
+
+    public void saveData()
+    {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putBoolean(SWITCH1, aLampeChambre.isChecked());
+        editor.putBoolean(SWITCH2, aPC.isChecked());
+        editor.putBoolean(SWITCH3, aLampeSalon.isChecked());
+        editor.putBoolean(SWITCH4, aTV.isChecked());
+
+        editor.apply();
+    }
+
+    public void loadData()
+    {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        aSwitch1State = sharedPreferences.getBoolean(SWITCH1, false);
+        aSwitch2State = sharedPreferences.getBoolean(SWITCH2, false);
+        aSwitch3State = sharedPreferences.getBoolean(SWITCH3, false);
+        aSwitch4State = sharedPreferences.getBoolean(SWITCH4, false);
+    }
+
+    public void updateViews()
+    {
+        aLampeChambre.setChecked(aSwitch1State);
+        aPC.setChecked(aSwitch2State);
+        aLampeSalon.setChecked(aSwitch3State);
+        aTV.setChecked(aSwitch4State);
     }
 }

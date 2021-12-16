@@ -14,7 +14,7 @@ import java.util.UUID;
 public class BluetoothThreadApp extends Thread
 {
     //Attributs de la classe BluetoothThreadApp
-    private MainFragment    aMainFragment;
+    private MainActivity    aMainActivity;
     private BluetoothDevice aBluetoothDevice;
     private BluetoothSocket aBluetoothSocket;
     private InputStream     aInputStream;
@@ -22,10 +22,10 @@ public class BluetoothThreadApp extends Thread
     private String          aDirection;
 
     //Constructeur naturel de la classe BluetoothThreadApp
-    public BluetoothThreadApp(final MainFragment pMainActivity, final BluetoothDevice pBluetoothDevice)
+    public BluetoothThreadApp(final MainActivity pMainActivity, final BluetoothDevice pBluetoothDevice)
     {
         this.aBluetoothDevice = pBluetoothDevice;
-        this.aMainFragment = pMainActivity;
+        this.aMainActivity = pMainActivity;
     }
 
     //Modificateur de l’attribut aDirection
@@ -60,7 +60,7 @@ public class BluetoothThreadApp extends Thread
     }
 
     //Méthode manageConnectedSocket
-    public void manageConnectedSocket()
+    private void manageConnectedSocket()
     {
         while(!Thread.currentThread().isInterrupted())//Tant que le thread n’est pas interrompu, on reste dans la boucle
         {
