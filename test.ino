@@ -1,6 +1,4 @@
 #include <SoftwareSerial.h>
-#define rx 2
-#define tx 3
 
 int out1 = 7;
 int out2 = 8;
@@ -15,18 +13,23 @@ String cmdRoom;
 String cmdDevice;
 SoftwareSerial bt(2, 3);
 void setup() {
-  digitalWrite(9, HIGH);
-  delay(500);
-  digitalWrite(9, LOW);  
   bt.begin(9600);
   Serial.begin(9600);
+  pinMode(out1, OUTPUT);
+  pinMode(out2, OUTPUT);
+  pinMode(out3, OUTPUT);
+  pinMode(out4, OUTPUT);
+  pinMode(out5, OUTPUT);
+  pinMode(out6, OUTPUT);
+  Serial.println("démarrage...");
 }
 
 void loop() {
   while (bt.available() > 0) {
     cmd = bt.readString();
+    Serial.println("Recu: " + cmd + "\n");
     if (cmd != "") {
-      //Serial.println("Recu: " + cmd + "\n");
+      Serial.println("Recu: " + cmd + "\n");
       cmdWord = cmd.substring(0, 2);
       cmdRoom = cmd.substring(3, 8);
       cmdDevice = cmd.substring(9);
