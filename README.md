@@ -62,3 +62,6 @@ Appli testée sur
 - + CPU octa-coeur 2.96GHz Kryo 485 
 - + GPU Adreno 640
 
+- Sus
+- + amogus
+- + ඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞ
