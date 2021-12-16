@@ -78,6 +78,7 @@ public class MainFragment extends Fragment {
                 {
                     if(aBluetoothOp != null)
                         aBluetoothOp.writeMessage("test");
+                        Toast.makeText(getContext(), "test2", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -164,7 +165,7 @@ public class MainFragment extends Fragment {
                     aSpinner.setEnabled(false);//On désactive le bouton car on a deja choisit un appareil
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery();//On arrête donc la recherche de BluetoothDevice
                     BluetoothDevice vBluetoothDevice = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray(new BluetoothDevice[0])[i-1];//On crée un BluetoothDevice en fonction de ce qu'on a sélectionné
-                    aBluetoothOp = new BluetoothThreadApp(aMainActivity, vBluetoothDevice);//On crée un nouvel objet de type BluetoothThreadApp
+                    aBluetoothOp = new BluetoothThreadApp(MainFragment.this, vBluetoothDevice);//On crée un nouvel objet de type BluetoothThreadApp
                     aBluetoothOp.start();//On appelle la méthode start pour démarrer le thread
                     aBluetoothOp.run();//On appelle la méthode run de la classe BluetoothThreadApp
                 }

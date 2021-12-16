@@ -14,7 +14,7 @@ import java.util.UUID;
 public class BluetoothThreadApp extends Thread
 {
     //Attributs de la classe BluetoothThreadApp
-    private MainActivity    aMainActivity;
+    private MainFragment    aMainActivity;
     private BluetoothDevice aBluetoothDevice;
     private BluetoothSocket aBluetoothSocket;
     private InputStream     aInputStream;
@@ -22,7 +22,7 @@ public class BluetoothThreadApp extends Thread
     private String          aDirection;
 
     //Constructeur naturel de la classe BluetoothThreadApp
-    public BluetoothThreadApp(final MainActivity pMainActivity, final BluetoothDevice pBluetoothDevice)
+    public BluetoothThreadApp(final MainFragment pMainActivity, final BluetoothDevice pBluetoothDevice)
     {
         this.aBluetoothDevice = pBluetoothDevice;
         this.aMainActivity = pMainActivity;
@@ -56,6 +56,14 @@ public class BluetoothThreadApp extends Thread
         catch(IOException pIOException)
         {
             pIOException.printStackTrace();//On affiche l’exception
+            this.aMainActivity.getView().findViewById(R.id.spinner).post(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    Toast.makeText(BluetoothThreadApp.this.aMainActivity.getContext(), "Connection failed !", Toast.LENGTH_SHORT).show();//On affiche un Toast pour prévenir l’utilisateur que la connection n’a pas pu se faire
+                }
+            });
         }
     }
 
