@@ -1,4 +1,4 @@
-#BRANCHE DEPRECIEE: APPLI DE PRODUCTION DANS LA BRANCHE RICHARD3
+# BRANCHE DEPRECIEE: APPLI DE PRODUCTION DANS LA BRANCHE RICHARD3
 ##
 # r**IC**hard
 ## Application développée dans le cadre de l'unité 4E-LE1 de Programmation Java Pour Android à l'ESIEE Paris (2021, E4FE), par Jules BENKEMOUN, Anthony CARDOSO & Avesta MOLAEI (Groupe 2E)
