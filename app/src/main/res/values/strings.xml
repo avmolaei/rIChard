@@ -1,14 +1,10 @@
 <resources>
-    <string name="app_name">rIChard</string>
+    <string name="app_name">rIChard3</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">rIChard automation</string>
-    <string name="nav_header_subtitle">MENU PRINCIPAL</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="menu_home">Paramètres Généraux</string>
-    <string name="devices">Appareils Bluetooth</string>
-    <string name="help">Aide et Conseils</string>
-    <string name="mentions_legales">Mentions Légales</string>
+    
+    <string-array name="Appareils">
+        <item>Xiaomi Pocophone F1</item>
+        <item>iPhone de Steve Jobs</item>
+    </string-array>
 </resources>

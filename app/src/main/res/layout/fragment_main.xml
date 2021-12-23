@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey">
+    <TextView
+        android:id="@+id/TextViewChambre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Chambre"/>
+
+    <TextView
+        android:id="@+id/TextViewSalon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/toggleButton2"
+        android:text="Salon"/>
+
+    <Switch
+        android:id="@+id/toggleButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/TextViewChambre"
+        android:text="Lampe"
+        android:gravity="left"
+        android:textOff="OFF"
+        android:textOn="ON"/>
+
+    <Switch
+        android:id="@+id/toggleButton2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/toggleButton"
+        android:text="PC"
+        android:gravity="left"
+        android:textOff="OFF"
+        android:textOn="ON" />
+
+    <Switch
+        android:id="@+id/toggleButton3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/TextViewSalon"
+        android:text="Lampe"
+        android:gravity="left"
+        android:textOff="OFF"
+        android:textOn="ON"/>
+
+    <Switch
+        android:id="@+id/toggleButton4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/toggleButton3"
+        android:text="TV"
+        android:gravity="left"
+        android:textOff="OFF"
+        android:textOn="ON" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toggleButton4"
+        android:layout_centerHorizontal="true"
+        android:text="Apply"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/connect"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect" />
+
+</RelativeLayout>

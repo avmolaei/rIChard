@@ -1,6 +1,5 @@
-package com.example.richard;
+package com.example.richard3;
 
-//Imports nécessaires à la classe BluetoothThreadApp
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -9,25 +8,27 @@ import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+
+import android.widget.Button;
 import android.widget.Toast;
 import java.util.UUID;
 
 public class BluetoothThreadApp extends Thread
 {
     //Attributs de la classe BluetoothThreadApp
-    private DrawerActivity    aMainActivity;
+    private MainFragment    aMainActivity;
     private BluetoothDevice aBluetoothDevice;
     private BluetoothSocket aBluetoothSocket;
     private InputStream     aInputStream;
     private OutputStream    aOutputStream;
     private String          aDirection;
+    Button connect;
 
     //Constructeur naturel de la classe BluetoothThreadApp
-    public BluetoothThreadApp(final DrawerActivity pMainActivity, final BluetoothDevice pBluetoothDevice)
+    public BluetoothThreadApp(final MainFragment pMainActivity, final BluetoothDevice pBluetoothDevice)
     {
         this.aBluetoothDevice = pBluetoothDevice;
         this.aMainActivity = pMainActivity;
-        this.aDirection = "ඞ sus amogus ඞ";
     }
 
     //Modificateur de l’attribut aDirection
@@ -58,19 +59,15 @@ public class BluetoothThreadApp extends Thread
         catch(IOException pIOException)
         {
             pIOException.printStackTrace();//On affiche l’exception
-            this.aMainActivity.findViewById(R.id.spinner).post(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    Toast.makeText(BluetoothThreadApp.this.aMainActivity, "Connection failed !", Toast.LENGTH_SHORT).show();//On affiche un Toast pour prévenir l’utilisateur que la connection n’a pas pu se faire
-                }
+            this.aMainActivity.getView().findViewById(R.id.spinner).post(() -> {
+             //   Toast.makeText(BluetoothThreadApp.this.aMainActivity.getContext(), "Connection failed !", Toast.LENGTH_LONG).show();//On affiche un Toast pour prévenir l’utilisateur que la connection n’a pas pu se faire
+              //  Toast.makeText(BluetoothThreadApp.this.aMainActivity.getContext(), pIOException.toString(), Toast.LENGTH_LONG).show();//On affiche un Toast pour prévenir l’utilisateur que la connection n’a pas pu se faire
             });
         }
     }
 
     //Méthode manageConnectedSocket
-    public void manageConnectedSocket()
+    private void manageConnectedSocket()
     {
         while(!Thread.currentThread().isInterrupted())//Tant que le thread n’est pas interrompu, on reste dans la boucle
         {
@@ -89,7 +86,7 @@ public class BluetoothThreadApp extends Thread
     }
 
     //Méthode writeMessage
-    private void writeMessage(final String pString)
+    void writeMessage(final String pString)
     {
         try
         {
@@ -100,7 +97,7 @@ public class BluetoothThreadApp extends Thread
             }
             else
             {
-                Toast.makeText(this.aMainActivity, "No device connected !", Toast.LENGTH_SHORT).show();//On affiche un Toast pour prévenir l’utilisateur qu’il n’y a pas de BluetoothSocket sur laquelle on pourrait récupérer ses streams
+
             }
         }
         catch(IOException pIoException)
@@ -115,7 +112,7 @@ public class BluetoothThreadApp extends Thread
             }
             else
             {
-                Toast.makeText(this.aMainActivity, "No device connected !", Toast.LENGTH_SHORT).show();//On affiche un Toast pour prévenir l’utilisateur qu’il n’y a pas de OutputStream sur lequel écrire un message
+
             }
         }
         catch(IOException pIOException)
@@ -143,7 +140,7 @@ public class BluetoothThreadApp extends Thread
         }
         else
         {
-            Toast.makeText(this.aMainActivity, "No device connected !", Toast.LENGTH_SHORT).show();//On affiche un Toast pour prévenir l’utilisateur qu’il n’y a pas de InputStream sur lequel lire un message
+
         }
     }
 
@@ -163,4 +160,3 @@ public class BluetoothThreadApp extends Thread
         }
     }
 }
-
